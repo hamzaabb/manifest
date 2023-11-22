@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sfdx
+  name: sfdx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sfdx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sfdx
+    spec:
+      containers:
+      - image: escowar/sfdximage:latest
+        name: sfdx
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-service
+  labels:
+    app: lb-service
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 81
+    targetPort: 5000
+  selector:
+    app: sfdx
