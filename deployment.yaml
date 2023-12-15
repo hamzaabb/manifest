@@ -18,7 +18,7 @@ spec:
         app: sfdx
     spec:
       containers:
-      - image: escowar/sfdximage:7
+      - image: escowar/sfdximage:11
         name: sfdx
         resources: {}
 status: {}
